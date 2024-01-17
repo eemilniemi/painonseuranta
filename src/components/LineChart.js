@@ -33,7 +33,7 @@ const LineChart  = ({chartData}) => {
       };
       
     return(
-        <div>
+        <div style = {{width: '99%'}}>
             <Line data={chartData} options={options}></Line>
         </div>
     );

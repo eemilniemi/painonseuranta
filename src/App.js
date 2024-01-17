@@ -1,7 +1,15 @@
 import './App.css';
-import {useState} from 'react';
-import { Line } from "react-chartjs-2";
+import {useEffect, useState} from 'react';
 import LineChart from './components/LineChart';
+import DarkModeToggle from './components/DarkModeToggle';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  BrowserRouter,
+} from "react-router-dom";
+import {Outlet, Link} from "react-router-dom";
 
 
 const DatePicker = (props) => {
@@ -15,7 +23,7 @@ const DatePicker = (props) => {
     const formattedDate = `${day}-${month}-${year}`
 
     props.setDate(formattedDate);
-    console.log(formattedDate)
+
   };
   return(
       <div>
@@ -36,7 +44,6 @@ const WeightForm = (props) => {
     const existingDataString = localStorage.getItem('weightData')
     const existingData = existingDataString ? JSON.parse(existingDataString) : [];
     const indexToUpdate = existingData.findIndex(item => item.date === props.date);
-    console.log(indexToUpdate, existingData[indexToUpdate])
     if(indexToUpdate !== -1){
       existingData.splice(indexToUpdate,1)
     }
@@ -44,7 +51,7 @@ const WeightForm = (props) => {
     
 
 
-    newData.sort((a, b) => {
+    newData.sort((a, b) => { 
       const dateA = new Date(a.date.split('-').reverse().join('-'));
       const dateB = new Date(b.date.split('-').reverse().join('-'));
     
@@ -86,6 +93,33 @@ const parseDate = (dateString) => {
 
 
 
+const ClearButton = (props) => {
+  const handleClear = (event) =>{
+    event.preventDefault();
+    localStorage.setItem('weightData', []);
+    props.setWeightData([]);
+  }
+  return(
+    <div>
+          <button onClick ={handleClear}>Poista tiedot</button>
+    </div>
+
+  )
+
+}
+
+const AllData = ({data}) => {
+  const dates = data.labels
+  const weights = data.datasets[0].data
+  
+  return(
+    <>
+    
+    
+    </>
+  )
+}
+
 const App= () => {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -109,24 +143,23 @@ const App= () => {
   })
 
 
-  console.log(weightData)
-
   return (
 
     <div className="App">
-
-
         <h1>Painonseuranta</h1>
         <h3>Syötä päivämäärä ja paino</h3>
-
+        
         <DatePicker date={date} setDate={setDate} ></DatePicker>
         <WeightForm weight={weight} setWeight={setWeight} setWeightData={setWeightData} date={date}></WeightForm>
-        <div className="App" style={{width: 1600, height: 100}}>
+        <div className="App">
           <LineChart chartData={weightData}></LineChart>
         </div>
-
+        <ClearButton setWeightData = {setWeightData}></ClearButton>
+        <br/>
+        <AllData data={weightData}></AllData>
         <div>
         </div>
+
 
     </div>
 
