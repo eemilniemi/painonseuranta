@@ -5,8 +5,11 @@ import 'chartjs-adapter-moment';
 
 
 const LineChart  = ({chartData}) => {    
-
     const options = {
+        color: '#383020',
+        borderColor: '#383020',
+        tension: 0.2,
+        
         scales: {
             x: {
               type:'time',

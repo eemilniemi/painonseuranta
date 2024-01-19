@@ -1,35 +1,12 @@
 .App {
   text-align: center;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
 }
 
 body {
-  background-color: var(--color-background);
-  --color-background: #fafafa;
-  --color-foreground: #1f2023;
-
-  --image-grayscale: 0;
-  --image-opacity: 100%;
+  background: linear-gradient(to left, #AA9261, beige);
 }
-body.dark {
-  --color-background: #1f2023;
-  --color-foreground: #efefef;
-
-  --image-grayscale: 50%;
-  --image-opacity: 90%;
-}
-
-img,
-video {
-  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
-}
-
-
 
 .App-header {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
