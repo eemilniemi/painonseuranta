@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Painonseuranta (painonseuranta.fi)
+
+This application allows users to track their weight over time. The app is deployed at [painonseuranta.fi](https://painonseuranta.fi).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
