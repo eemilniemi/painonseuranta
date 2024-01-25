@@ -2,6 +2,7 @@ import './App.css';
 import {useState} from 'react';
 import LineChart from './components/LineChart';
 import stringifyDate from './components/FormatDate'
+import {ExportCSVButton, CSVImport} from './components/CSV';
 
 
 const replaceData = (date,weight,setWeightData) => {
@@ -121,7 +122,10 @@ const AllData = ({data, setWeightData}) => {
   )
 }
 
+
+
 const App= () => {
+
   const dateString = stringifyDate(new Date())
 
   const dataString = localStorage.getItem('weightData')
@@ -138,7 +142,6 @@ const App= () => {
     }]
   })
 
-
   return (
     <div className="App">
         <h1>Painonseuranta</h1>
@@ -151,6 +154,11 @@ const App= () => {
         <AllData data={weightData} setWeightData={setWeightData}/>
         <br/>
         <ClearButton setWeightData = {setWeightData}/>
+
+        <h5>Haluatko tuoda tai viedä tietoja CSV-muodossa?</h5>
+        Valitse tiedosto, josta tuodaan tiedot<CSVImport setWeightData={setWeightData}></CSVImport>
+        <ExportCSVButton></ExportCSVButton>
+
     </div>
   );
 }

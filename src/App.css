@@ -18,3 +18,8 @@ body {
 .App-link {
   color: #61dafb;
 }
+
+.csv-link {
+  color: black;
+  text-decoration: none;
+}
